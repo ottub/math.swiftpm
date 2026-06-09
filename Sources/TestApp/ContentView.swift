@@ -2,8 +2,17 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var vm = QuizViewModel()
+    @State private var isStarted = false
 
     var body: some View {
+        if isStarted {
+            quizView
+        } else {
+            TitleView(isStarted: $isStarted)
+        }
+    }
+
+    private var quizView: some View {
         NavigationStack {
             VStack(spacing: 16) {
                 Picker("難易度", selection: $vm.difficulty) {
@@ -19,6 +28,13 @@ struct ContentView: View {
                 Spacer()
             }
             .navigationTitle("因数分解練習")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("戻る") {
+                        isStarted = false
+                    }
+                }
+            }
         }
     }
 }

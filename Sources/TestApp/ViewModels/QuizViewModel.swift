@@ -4,7 +4,10 @@ import SwiftUI
 @MainActor
 final class QuizViewModel: ObservableObject {
     @Published private(set) var question: Question
-    @Published var inputs: [String] = ["", "", "", ""] // a,b,c,d as strings
+    @Published var inputA: String = ""
+    @Published var inputB: String = ""
+    @Published var inputC: String = ""
+    @Published var inputD: String = ""
     @Published var feedback: String = ""
     @Published var isCorrect: Bool = false
     @Published var difficulty: Difficulty = .easy {
@@ -17,13 +20,17 @@ final class QuizViewModel: ObservableObject {
 
     func newQuestion() {
         self.question = FactorizationGenerator.makeQuestion(difficulty: difficulty)
-        self.inputs = ["", "", "", ""]
+        self.inputA = ""
+        self.inputB = ""
+        self.inputC = ""
+        self.inputD = ""
         self.feedback = ""
         self.isCorrect = false
     }
 
     func checkAnswer() {
-        let parsed = inputs.map { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
+        let values = [inputA, inputB, inputC, inputD]
+        let parsed = values.map { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
         guard parsed.count == 4, parsed.allSatisfy({ $0 != nil }) else {
             feedback = "すべての欄に整数を入力してください。"
             isCorrect = false

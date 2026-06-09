@@ -12,18 +12,12 @@ struct QuestionView: View {
             HStack(spacing: 12) {
                 // Factor 1: (a x + b)
                 HStack(spacing: 4) {
-                    TextField("a", text: Binding(
-                        get: { vm.inputs.indices.contains(0) ? vm.inputs[0] : "" },
-                        set: { if vm.inputs.indices.contains(0) { vm.inputs[0] = $0 } }
-                    ))
+                    TextField("a", text: $vm.inputA)
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 44)
                         .textFieldStyle(.roundedBorder)
                     Text("x +")
-                    TextField("b", text: Binding(
-                        get: { vm.inputs.indices.contains(1) ? vm.inputs[1] : "" },
-                        set: { if vm.inputs.indices.contains(1) { vm.inputs[1] = $0 } }
-                    ))
+                    TextField("b", text: $vm.inputB)
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 44)
                         .textFieldStyle(.roundedBorder)
@@ -31,18 +25,12 @@ struct QuestionView: View {
                 Text("×")
                 // Factor 2: (c x + d)
                 HStack(spacing: 4) {
-                    TextField("c", text: Binding(
-                        get: { vm.inputs.indices.contains(2) ? vm.inputs[2] : "" },
-                        set: { if vm.inputs.indices.contains(2) { vm.inputs[2] = $0 } }
-                    ))
+                    TextField("c", text: $vm.inputC)
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 44)
                         .textFieldStyle(.roundedBorder)
                     Text("x +")
-                    TextField("d", text: Binding(
-                        get: { vm.inputs.indices.contains(3) ? vm.inputs[3] : "" },
-                        set: { if vm.inputs.indices.contains(3) { vm.inputs[3] = $0 } }
-                    ))
+                    TextField("d", text: $vm.inputD)
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 44)
                         .textFieldStyle(.roundedBorder)
