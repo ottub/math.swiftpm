@@ -9,6 +9,6 @@ Minimal Swift Package for Swift Playgrounds on iPad.
 
 ## 内容
 
-- iOS 18 以上対応（iOS 26 でも動作します）
+- iOS 17 以上対応（Swift Playgrounds 対応）
 - `TestApp` SwiftUI アプリ
-- 画面中央に `OK` ボタン配置
+- 画面遷移と問題タイプ選択を実装
