@@ -15,6 +15,14 @@ struct ContentView: View {
     private var quizView: some View {
         NavigationStack {
             VStack(spacing: 16) {
+                Picker("問題タイプ", selection: $vm.problemType) {
+                    ForEach(ProblemType.allCases, id: \.self) { type in
+                        Text(type.rawValue).tag(type)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+
                 Picker("難易度", selection: $vm.difficulty) {
                     ForEach(Difficulty.allCases, id: \.self) { d in
                         Text(d.rawValue).tag(d)

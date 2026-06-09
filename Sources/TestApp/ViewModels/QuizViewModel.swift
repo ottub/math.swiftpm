@@ -4,6 +4,9 @@ import SwiftUI
 @MainActor
 final class QuizViewModel: ObservableObject {
     @Published private(set) var question: Question
+    @Published var problemType: ProblemType = .factorization {
+        didSet { newQuestion() }
+    }
     @Published var inputA: String = ""
     @Published var inputB: String = ""
     @Published var inputC: String = ""
@@ -15,11 +18,11 @@ final class QuizViewModel: ObservableObject {
     }
 
     init() {
-        self.question = FactorizationGenerator.makeQuestion(difficulty: .easy)
+        self.question = QuestionGenerator.makeQuestion(kind: .factorization, difficulty: .easy)
     }
 
     func newQuestion() {
-        self.question = FactorizationGenerator.makeQuestion(difficulty: difficulty)
+        self.question = QuestionGenerator.makeQuestion(kind: problemType, difficulty: difficulty)
         self.inputA = ""
         self.inputB = ""
         self.inputC = ""
@@ -30,18 +33,27 @@ final class QuizViewModel: ObservableObject {
 
     func checkAnswer() {
         let values = [inputA, inputB, inputC, inputD]
-        let parsed = values.map { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
-        guard parsed.count == 4, parsed.allSatisfy({ $0 != nil }) else {
+        let count = question.expectedAnswers.count
+        let answerTexts = Array(values.prefix(count))
+        let parsed = answerTexts.map { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
+        guard parsed.count == count, parsed.allSatisfy({ $0 != nil }) else {
             feedback = "すべての欄に整数を入力してください。"
             isCorrect = false
             return
         }
         let vals = parsed.map { $0! }
-        let expected = question.expectedFactors
-        // Accept either (a,b,c,d) or swapped (c,d,a,b)
-        let attempt1 = (a: vals[0], b: vals[1], c: vals[2], d: vals[3])
-        let attempt2 = (a: vals[2], b: vals[3], c: vals[0], d: vals[1])
-        if attempt1 == expected || attempt2 == expected {
+        let expected = question.expectedAnswers
+
+        let isMatch: Bool
+        if question.kind == .factorization {
+            let attempt1 = [vals[0], vals[1], vals[2], vals[3]]
+            let attempt2 = [vals[2], vals[3], vals[0], vals[1]]
+            isMatch = attempt1 == expected || attempt2 == expected
+        } else {
+            isMatch = vals == expected
+        }
+
+        if isMatch {
             feedback = "正解！"
             isCorrect = true
         } else {
