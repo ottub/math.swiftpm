@@ -1,58 +1,20 @@
+// PlaygroundApp.swift: kept for reference but no @main here to avoid duplicate
+// If you want to run the playground directly, open Math.playground/Contents.swift
+// or Pages/Page1.playgroundpage/Contents.swift in Swift Playgrounds on iPad.
+
 import SwiftUI
 
-@main
-struct PlaygroundMathApp: App {
-    var body: some Scene {
-        WindowGroup {
-            TitleView()
-        }
-    }
-}
-
-struct TitleView: View {
+struct PlaygroundReference_TitleView: View {
     var body: some View {
-        ZStack {
-            Color(.systemBackground)
-                .ignoresSafeArea()
-
-            VStack(spacing: 28) {
-                Spacer()
-
-                VStack(spacing: 12) {
-                    Text("Math Practice")
-                        .font(.system(size: 42, weight: .bold))
-                        .multilineTextAlignment(.center)
-
-                    Text("SwiftUI title screen for Swift Playgrounds")
-                        .font(.title3)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 32)
-
-                Button(action: {}) {
-                    Text("Start")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
-                        .padding(.horizontal, 32)
-                }
-
-                Spacer()
-
-                Text("iOS 16+ / SwiftUI")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-            }
-            .padding(.bottom, 40)
-        }
+        Text("Playground title view (reference)")
+            .font(.headline)
+            .padding()
     }
 }
 
-#Preview {
-    TitleView()
-        .previewDevice("iPad Air (4th generation)")
+// Preview for development in Xcode-like editors
+#if DEBUG
+struct PlaygroundReference_Previews: PreviewProvider {
+    static var previews: some View { PlaygroundReference_TitleView() }
 }
+#endif
