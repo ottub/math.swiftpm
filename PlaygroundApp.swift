@@ -54,4 +54,5 @@ struct TitleView: View {
 
 #Preview {
     TitleView()
+        .previewDevice("iPad Air (4th generation)")
 }
