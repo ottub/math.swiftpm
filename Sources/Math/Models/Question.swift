@@ -26,8 +26,8 @@ public struct Question: Identifiable {
     }
 }
 
-struct QuestionGenerator {
-    static func makeQuestion(kind: ProblemType, difficulty: Difficulty) -> Question {
+public struct QuestionGenerator {
+    public static func makeQuestion(kind: ProblemType, difficulty: Difficulty) -> Question {
         switch kind {
         case .factorization:
             return makeFactorizationQuestion(difficulty: difficulty)
