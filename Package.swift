@@ -7,16 +7,11 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: "Math", targets: ["Math"])
+        .executable(name: "TestApp", targets: ["TestApp"])
     ],
     targets: [
-        .target(
-            name: "Math",
-            path: "Sources/Math"
-        ),
         .executableTarget(
             name: "TestApp",
-            dependencies: ["Math"],
             path: "Sources/TestApp"
         )
     ]
