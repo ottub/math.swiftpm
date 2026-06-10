@@ -10,7 +10,7 @@ let package = Package(
         .executable(name: "TestApp", targets: ["TestApp"])
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "TestApp",
             path: "Sources/TestApp"
         )
