@@ -11,12 +11,19 @@ public enum ProblemType: String, CaseIterable {
     case expansion = "展開"
 }
 
-struct Question: Identifiable {
-    let id = UUID()
-    let prompt: String
-    let kind: ProblemType
-    let expectedAnswers: [Int]
-    let difficulty: Difficulty
+public struct Question: Identifiable {
+    public let id = UUID()
+    public let prompt: String
+    public let kind: ProblemType
+    public let expectedAnswers: [Int]
+    public let difficulty: Difficulty
+
+    public init(prompt: String, kind: ProblemType, expectedAnswers: [Int], difficulty: Difficulty) {
+        self.prompt = prompt
+        self.kind = kind
+        self.expectedAnswers = expectedAnswers
+        self.difficulty = difficulty
+    }
 }
 
 struct QuestionGenerator {
