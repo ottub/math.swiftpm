@@ -7,7 +7,8 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: "Math", targets: ["Math"]) // core library
+        .library(name: "Math", targets: ["Math"]), // core library
+        .executable(name: "TestApp", targets: ["TestApp"])
     ],
     targets: [
         .target(
