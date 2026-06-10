@@ -1,5 +1,4 @@
 import SwiftUI
-import PlaygroundSupport
 
 // MARK: - Models
 
@@ -342,6 +341,13 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Playground Setup
+// MARK: - App Entry Point
 
-PlaygroundPage.current.setLiveView(ContentView())
+@main
+struct MathApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
