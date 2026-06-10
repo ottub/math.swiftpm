@@ -2,18 +2,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "TestApp",
+    name: "Math",
     platforms: [
-        .iOS(.v26)
+        .iOS(.v16)
     ],
     products: [
-        .executable(name: "TestApp", targets: ["TestApp"])
+        .library(name: "Math", targets: ["Math"]) // core library
     ],
     targets: [
+        .target(
+            name: "Math",
+            path: "Sources/Math",
+            resources: [.process("Resources")]
+        ),
         .executableTarget(
             name: "TestApp",
-            path: "Sources/TestApp",
-            resources: [.process("Resources")]
+            dependencies: ["Math"],
+            path: "Sources/TestApp"
         )
     ]
 )

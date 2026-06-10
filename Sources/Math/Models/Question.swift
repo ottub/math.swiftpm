@@ -1,12 +1,12 @@
 import Foundation
 
-enum Difficulty: String, CaseIterable {
+public enum Difficulty: String, CaseIterable {
     case easy = "簡単"
     case medium = "普通"
     case hard = "難しい"
 }
 
-enum ProblemType: String, CaseIterable {
+public enum ProblemType: String, CaseIterable {
     case factorization = "因数分解"
     case expansion = "展開"
 }

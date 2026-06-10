@@ -1,18 +1,18 @@
 import AVFoundation
 import Foundation
 
-final class BackgroundMusicManager: ObservableObject {
+public final class BackgroundMusicManager: ObservableObject {
     private var player: AVAudioPlayer?
     private let audioFilename = "bgm"
     private let audioExtension = "mp3"
 
-    init() {
+    public init() {
         preparePlayer()
     }
 
     private func preparePlayer() {
         guard let url = Bundle.module.url(forResource: audioFilename, withExtension: audioExtension) else {
-            print("[BGM] bgm.mp3 not found in bundle resources. Add the file to Sources/TestApp/Resources.")
+            print("[BGM] bgm.mp3 not found in bundle resources. Add the file to Sources/Math/Resources.")
             return
         }
 

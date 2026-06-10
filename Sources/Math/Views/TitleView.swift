@@ -1,9 +1,13 @@
 import SwiftUI
 
-struct TitleView: View {
-    @Binding var isStarted: Bool
+public struct TitleView: View {
+    @Binding public var isStarted: Bool
 
-    var body: some View {
+    public init(isStarted: Binding<Bool>) {
+        self._isStarted = isStarted
+    }
+
+    public var body: some View {
         VStack(spacing: 40) {
             Spacer()
 

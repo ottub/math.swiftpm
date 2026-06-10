@@ -2,22 +2,22 @@ import Foundation
 import SwiftUI
 
 @MainActor
-final class QuizViewModel: ObservableObject {
+public final class QuizViewModel: ObservableObject {
     @Published private(set) var question: Question
-    @Published var problemType: ProblemType = .factorization {
+    @Published public var problemType: ProblemType = .factorization {
         didSet { newQuestion() }
     }
-    @Published var inputA: String = ""
-    @Published var inputB: String = ""
-    @Published var inputC: String = ""
-    @Published var inputD: String = ""
-    @Published var feedback: String = ""
-    @Published var isCorrect: Bool = false
-    @Published var difficulty: Difficulty = .easy {
+    @Published public var inputA: String = ""
+    @Published public var inputB: String = ""
+    @Published public var inputC: String = ""
+    @Published public var inputD: String = ""
+    @Published public var feedback: String = ""
+    @Published public var isCorrect: Bool = false
+    @Published public var difficulty: Difficulty = .easy {
         didSet { newQuestion() }
     }
 
-    init() {
+    public init() {
         self.question = QuestionGenerator.makeQuestion(kind: .factorization, difficulty: .easy)
     }
 

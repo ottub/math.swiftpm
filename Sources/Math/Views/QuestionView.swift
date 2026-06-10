@@ -1,9 +1,13 @@
 import SwiftUI
 
-struct QuestionView: View {
-    @ObservedObject var vm: QuizViewModel
+public struct QuestionView: View {
+    @ObservedObject public var vm: QuizViewModel
 
-    var body: some View {
+    public init(vm: QuizViewModel) {
+        self.vm = vm
+    }
+
+    public var body: some View {
         VStack(spacing: 20) {
             Text(vm.question.prompt)
                 .font(.title2)

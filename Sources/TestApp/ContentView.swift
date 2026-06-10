@@ -1,4 +1,5 @@
 import SwiftUI
+import Math
 
 struct ContentView: View {
     @StateObject private var vm = QuizViewModel()
