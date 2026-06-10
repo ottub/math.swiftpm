@@ -1,5 +1,13 @@
 import SwiftUI
-import PlaygroundSupport
+
+@main
+struct MathPlaygroundApp: App {
+    var body: some Scene {
+        WindowGroup {
+            TitleView()
+        }
+    }
+}
 
 struct TitleView: View {
     var body: some View {
@@ -43,5 +51,3 @@ struct TitleView: View {
         }
     }
 }
-
-PlaygroundPage.current.setLiveView(TitleView())
